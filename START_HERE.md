@@ -1,115 +1,92 @@
-# START HERE 👋 (Read This First)
+# START HERE — Git & GitHub: Zero to Independent
 
-Hi. This file explains how to use this whole repo in the simplest way possible.
-If you only read ONE file, read this one. It's easy. Take your time.
+This repository is the **course**. Your practice should happen in a separate throwaway learning repository so you can experiment, break things, recover them, and build real Git history without modifying the curriculum itself.
 
----
+## 1. What you are learning
 
-## What is this repo?
+- **Git** = version control on your computer. It records project history as commits.
+- **GitHub** = a hosting and collaboration platform for Git repositories.
 
-It's a **course that teaches you Git and GitHub** — the tools you use to save your code and share it with the world.
+The goal is not memorizing commands. The goal is becoming able to inspect a repository, make changes safely, recover from mistakes, collaborate through branches and pull requests, and understand what Git is doing.
 
-Think of it like a **cookbook with 28 recipes**.
+## 2. Create your student lab first
 
-- Each **recipe = 1 lesson**.
-- You do **one lesson per sitting** (no clock, no rush).
-- Every lesson teaches you ONE skill and asks you to TRY it yourself.
-- When you can do it **without looking**, you move to the next lesson.
-- After 28 lessons, Git stops being scary and becomes a tool you just... use.
+Before Lesson 1, create a folder/repository named something like:
 
----
-
-## First, what's the difference between Git and GitHub?
-
-Super simple:
-
-- **Git** = a "save button with superpowers" that lives on your computer. It remembers every version of your work.
-- **GitHub** = a website where you put your Git projects online, so you can back them up and share them.
-
-You'll learn both. Module 0 explains this properly.
-
----
-
-## The 2 kinds of files you'll use
-
-1. **The Guide** = the teacher. It tells you WHAT to learn in each lesson and the exact commands to type.
-   - Example: `Module_0_Setup/Module_0_Guide.md`
-
-2. **The Lesson Log** = your worksheet. It has check-boxes so you can track what you've done.
-   - Example: `Module_0_Setup/Logs/Lesson_01.md`
-   - One is already made for every lesson. You don't create them.
-
-That's it. A teacher file and a worksheet file.
-
----
-
-## Your Lesson, Step by Step
-
-> You can read the guides on the GitHub **website**. You'll practice the commands in your **terminal** (the black text window) — the guides show you exactly what to type.
-
-**STEP 1 — Open the module guide.**
-Start with `Module_0_Setup/Module_0_Guide.md`. Read Lesson 1.
-
-**STEP 2 — Open today's worksheet.**
-In the same module, open the `Logs` folder and click the matching lesson (e.g. `Lesson_01.md`).
-
-**STEP 3 — Do the 3 parts of the lesson:**
-- 🟦 **LEARN** — read the short explanation in the guide.
-- 🟩 **DO** — type the commands yourself in your terminal. Try them. Break them. See what happens.
-- 🟥 **TRANSITION CONDITION** — a tiny test to prove you got it.
-
-Tick the check-boxes in the log as you finish.
-
-**STEP 4 — The "Can I move on?" test.**
-Each lesson ends with a **Transition Condition** — one small task, like *"Make a commit and see it in your history, with no guide open."*
-
-- If you CAN do it → move to the next lesson. 🎉
-- If you CANNOT yet → repeat the lesson. That's normal and smart. Do NOT skip ahead.
-
----
-
-## Where do I practice?
-
-Each module has an **`Exercises/`** folder. Use it as a safe playground — make test files, commit them, branch them, break things. Nothing here is precious. **Breaking things on purpose is how you learn Git.**
-
----
-
-## The "I'm scared I'll lose my work" promise
-
-Read this and relax: **Git is almost impossible to permanently lose work in.** Once you've committed something, it's saved — even if you "delete" it, there are ways to bring it back. Module 5 ("Fixing Mistakes") teaches you exactly how to undo anything. By the end, you'll feel safe, not scared.
-
----
-
-## The map of the repo
-
-```
-git-github-course/
-├── START_HERE.md          <- this file
-├── README.md              <- the big-picture course plan
-├── CHEATSHEET.md          <- every command in one place (your quick reference)
-├── _Templates/
-│   └── Lesson_Log.md      <- a blank worksheet, in case you need a spare
-├── Module_0_Setup/
-│   ├── Module_0_Guide.md  <- teacher
-│   ├── Logs/              <- worksheets (Lesson_01 ...)
-│   └── Exercises/         <- your safe practice playground
-├── Module_1_Daily_Core/   <- same layout
-├── Module_2_Branching/    <- same layout
-├── Module_3_Remotes/      <- same layout
-├── Module_4_Collaboration/<- same layout
-├── Module_5_Fixing_Mistakes/ <- same layout
-├── Module_6_Real_World/   <- same layout
-└── Capstone_First_Contribution/  <- your final project
+```text
+git-github-lab/
+├── notes/
+├── experiments/
+└── README.md
 ```
 
-Every module looks the SAME. Learn one, you know them all.
+All practice, deliberate mistakes, lesson logs, branches, conflicts, resets, and recovery exercises happen there.
 
----
+**Do not use this course repository as your practice playground.** Treat this repo as read-only curriculum.
 
-## If you ever feel lost
+See **[STUDENT_LAB.md](STUDENT_LAB.md)** for the exact setup.
 
-Say the loop out loud:
+## 3. How every lesson works
 
-> **"Open the guide. Open the lesson log. Learn it. Do it in the terminal. Pass the little test."**
+Each lesson uses this loop:
 
-That's the whole course. One lesson at a time. Now open `Module_0_Setup/Module_0_Guide.md` and start **Lesson 1**.
+> **LEARN → PREDICT → DO → INSPECT → BREAK/RECOVER → EXPLAIN → TRANSITION CHECK**
+
+A lesson is finished only when you can pass its Transition Condition without copying commands from the guide.
+
+When a lesson contains a destructive command, first read **[SAFETY.md](SAFETY.md)**.
+
+## 4. Course order
+
+1. **Module 0 — Setup**: Git vs GitHub, installation, identity, first repository
+2. **Module 1 — Daily Core**: status, diff, staging, commits, history, ignore rules
+3. **Module 2 — Branching**: branches, switching, merging, branch inspection
+4. **Module 3 — Remotes**: clone, push, fetch, pull, upstream tracking, divergence
+5. **Module 4 — Collaboration**: forks, pull requests, review, issues, contribution etiquette
+6. **Module 5 — Recovery**: restore, stash, amend, revert, reset, reflog
+7. **Module 6 — Real World**: conflicts, rebase, tags/releases, Actions awareness
+8. **Final Capstone**: complete a real contribution workflow and demonstrate recovery skills
+
+## 5. What to do with the lesson logs
+
+The `Logs/` files in this curriculum are templates/reference worksheets. Copy the relevant log into your own `git-github-lab/notes/` folder and fill it out there.
+
+Do not edit the public curriculum merely to tick boxes.
+
+## 6. The safety rule
+
+Before any command that can discard or rewrite work:
+
+```bash
+git status
+git diff
+git log --oneline --decorate -10
+```
+
+Then ask:
+
+> **Is the work committed? Is it pushed/shared? Am I intentionally rewriting or deleting anything?**
+
+If you cannot answer those questions, stop and inspect before continuing.
+
+## 7. The mastery rule
+
+You are ready to move on when you can:
+
+- predict what a command will change,
+- run it,
+- inspect whether your prediction was correct,
+- explain the result,
+- recover if you deliberately create a failure.
+
+Finishing pages is not mastery.
+
+## Start now
+
+1. Open **[STUDENT_LAB.md](STUDENT_LAB.md)**.
+2. Create your separate practice repo.
+3. Then begin **[Module 0](Module_0_Setup/Module_0_Guide.md)**.
+
+If you get lost later, return to this sentence:
+
+> **Read the lesson. Work in the lab. Inspect constantly. Pass the transition check from memory.**

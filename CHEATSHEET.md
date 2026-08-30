@@ -1,135 +1,305 @@
 # Git & GitHub Cheatsheet
 
-> Every command in this course, in one place. Bookmark it. When you forget a command (you will, everyone does), come here.
-> `<thing>` means "replace this with your own value." Don't type the angle brackets.
+> Quick reference for this course. Use it to remember syntax—not to skip understanding repository state.
+>
+> `<thing>` means “replace this with your own value.” Do not type the angle brackets.
 
----
+## First response when confused
 
-## Setup (one time)
-```bash
-git --version                                  # check Git is installed
-git config --global user.name "Your Name"      # who you are
-git config --global user.email "you@email.com" # your email (use your GitHub one)
-git config --global init.defaultBranch main    # name the first branch "main"
-git config --list                              # see your settings
-```
-
-## Start a Project
-```bash
-git init                  # turn the current folder into a Git repo
-git clone <url>           # copy a GitHub repo to your computer
-```
-
-## The Daily Core Loop
-```bash
-git status                # what's changed? (run this CONSTANTLY)
-git add <file>            # stage one file for the next commit
-git add .                 # stage everything that changed
-git commit -m "message"   # save a snapshot with a description
-git log                   # see the history of commits
-git log --oneline         # history, short version
-git diff                  # see exact changes you haven't staged yet
-git show <commit>         # see what a specific commit changed
-```
-
-## .gitignore
-```
-# Put this in a file named .gitignore to tell Git what to NEVER track:
-node_modules/
-.env
-*.log
-.DS_Store
-```
-
-## Branching & Merging
-```bash
-git branch                # list branches (the * is where you are)
-git branch <name>         # create a branch
-git switch <name>         # move to a branch (modern)
-git switch -c <name>      # create AND move to a new branch
-git checkout <name>       # older way to switch
-git merge <name>          # merge <name> INTO your current branch
-git branch -d <name>      # delete a merged branch
-```
-
-## Remotes (connecting to GitHub)
-```bash
-git remote -v                       # see your linked remotes
-git remote add origin <url>         # link your repo to a GitHub repo
-git push -u origin main             # first push (sets the upstream)
-git push                            # send commits to GitHub
-git pull                            # get + merge changes from GitHub
-git fetch                           # get changes WITHOUT merging yet
-```
-
-## Fixing Mistakes (your safety net)
-```bash
-git restore <file>            # discard unstaged changes to a file
-git restore --staged <file>   # unstage a file (keep the changes)
-git stash                     # shelve changes temporarily
-git stash pop                 # bring shelved changes back
-git commit --amend            # fix the LAST commit (message or content)
-git reset --soft HEAD~1       # undo last commit, KEEP the changes staged
-git reset --hard HEAD~1       # (careful) undo last commit AND delete the changes
-git revert <commit>           # safely undo a commit by making a new one
-git reflog                    # see EVERYTHING you've done (recover lost work)
-```
-
-> 🟢 Safe to use anytime: `restore`, `stash`, `revert`, `reflog`, `reset --soft`
-> 🔴 Can delete work: `reset --hard`, `clean -fd`, `push --force` — pause and think first.
-
-## Merge Conflicts
-```bash
-# When Git can't auto-merge, it marks the file like this:
-<<<<<<< HEAD
-your version
-=======
-their version
->>>>>>> other-branch
-# Edit the file, delete the <<<, ===, >>> lines, keep what you want, then:
-git add <file>
-git commit            # finishes the merge
-```
-
-## Rebase (advanced — use carefully)
-```bash
-git rebase main       # replay your branch's commits on top of main
-# GOLDEN RULE: never rebase commits you've already pushed/shared.
-```
-
-## Tags & Releases
-```bash
-git tag                       # list tags
-git tag -a v1.0.0 -m "v1.0.0" # create an annotated tag (a version marker)
-git push origin v1.0.0        # push a tag to GitHub
-```
-
-## Inspecting & Recovering
-```bash
-git log --oneline --graph --all   # visual history of all branches
-git blame <file>                  # who changed each line, and when
-git reflog                        # the undo-everything safety log
-```
-
----
-
-## GitHub Website Words (so they're not confusing)
-- **Repository (repo):** a project folder on GitHub.
-- **Fork:** your own copy of someone else's repo.
-- **Pull Request (PR):** "please pull my changes into your project" — how you propose changes.
-- **Issue:** a ticket to report a bug or suggest a feature.
-- **Commit:** one saved snapshot of your work.
-- **Branch:** a separate line of work, so you don't mess up `main`.
-- **Merge:** combining one branch's work into another.
-
----
-
-## The 5 commands you'll use 90% of the time
 ```bash
 git status
-git add .
-git commit -m "message"
+git branch -vv
+git log --oneline --graph --decorate --all -12
+```
+
+Then inspect before changing anything.
+
+---
+
+## Setup
+
+```bash
+git --version
+git config --global user.name "Your Name"
+git config --global user.email "your-commit-email@example.com"
+git config --global init.defaultBranch main
+git config --global --list
+git config --show-origin --get user.email
+```
+
+## Create / copy a repository
+
+```bash
+git init
+git clone <url>
+git rev-parse --show-toplevel
+```
+
+## Daily local workflow
+
+```bash
+git status                     # overall repository state
+git status --short             # compact state
+git diff                       # unstaged changes
+git add <path>                 # stage intended path
+git diff --staged              # inspect next commit snapshot
+git commit -m "Useful message"
+git log --oneline --decorate
+git show HEAD
+```
+
+`git add .` is valid, but inspect first. Do not use it reflexively in a messy working tree.
+
+## `.gitignore`
+
+Example:
+
+```text
+.env
+*.log
+node_modules/
+scratch/
+```
+
+```bash
+git check-ignore -v <path>
+```
+
+`.gitignore` normally affects untracked files. It does not remove an already tracked secret from history.
+
+## Branching
+
+```bash
+git branch
+git branch -vv
+git switch <branch>
+git switch -c <new-branch>
+git diff main..<branch>
+git merge <branch>             # merges INTO your current branch
+git branch --merged
+git branch --no-merged
+git branch -d <merged-branch>
+```
+
+History graph:
+
+```bash
+git log --oneline --graph --decorate --all
+```
+
+## Remotes and GitHub
+
+```bash
+git remote -v
+git remote show origin
+git remote add origin <url>
+git remote set-url origin <url>
+git fetch origin
+git branch -vv
+git log main..origin/main --oneline
+git diff main..origin/main
+git push -u origin main
 git push
 git pull
 ```
-Memorize these. The rest you can look up here.
+
+Mental model:
+
+- `main` = your local branch
+- `origin/main` = your local record of remote `main` from the last fetch
+- `origin` = conventional remote name, not magic
+- `fetch` = update remote knowledge without integrating into current branch
+- `pull` = fetch + integrate using the selected/configured strategy
+
+## Fork workflow
+
+Typical external contribution setup:
+
+```bash
+git clone <your-fork-url>
+cd <repo>
+git remote add upstream <original-repo-url>
+git remote -v
+git fetch upstream
+```
+
+Common convention:
+
+```text
+origin   → your fork
+upstream → original project
+```
+
+## Undo / recovery — choose by state
+
+### Unstage while keeping your edits
+
+```bash
+git restore --staged <file>
+```
+
+### Discard unstaged file edits — DESTRUCTIVE TO THOSE UNCOMMITTED EDITS
+
+```bash
+git diff <file>                 # inspect first
+git restore <file>
+```
+
+### Temporarily shelve work
+
+```bash
+git stash push -m "description"
+git stash list
+git stash pop
+```
+
+### Fix the latest local/unshared commit
+
+```bash
+git commit --amend
+```
+
+This rewrites that commit. Be careful if it has already been shared.
+
+### Undo a shared commit while preserving history
+
+```bash
+git revert <commit>
+```
+
+### Move branch history locally
+
+```bash
+git reset --soft HEAD~1         # move branch back, keep changes staged
+git reset --mixed HEAD~1        # move back, keep changes unstaged (default mode)
+```
+
+### Destructive reset
+
+```bash
+git reset --hard <commit>
+```
+
+This can destroy uncommitted working-tree/index changes. Use only in a disposable/recovery exercise when you understand the target.
+
+### Recover displaced committed work
+
+```bash
+git reflog
+git switch -c recovery <commit-from-reflog>
+```
+
+Creating a recovery branch is usually safer for a learner than immediately hard-resetting onto a found hash.
+
+## Merge conflicts
+
+When a merge conflicts:
+
+```bash
+git status
+```
+
+Open conflicted files and resolve the marked regions, then:
+
+```bash
+git add <resolved-file>
+git status
+git commit
+```
+
+Abort a merge **before completing it** if you want to return to the pre-merge state:
+
+```bash
+git merge --abort
+```
+
+## Rebase
+
+```bash
+git rebase main
+```
+
+Rebase rewrites commits. Avoid rewriting shared history unless you understand the consequences and the project workflow expects it.
+
+Useful abort command during a troubled rebase:
+
+```bash
+git rebase --abort
+```
+
+## Push rejection / divergence
+
+Do **not** jump straight to force push.
+
+Inspect:
+
+```bash
+git fetch
+git status
+git log --oneline --graph --decorate --all -15
+```
+
+Then choose the appropriate integration/recovery strategy.
+
+## Force push — advanced boundary
+
+If a workflow intentionally requires rewriting a branch you own, `--force-with-lease` is generally safer than raw `--force` because it checks that the remote has not moved unexpectedly:
+
+```bash
+git push --force-with-lease
+```
+
+This is still history rewriting. It is **not** a generic fix for push errors.
+
+## Tags and releases
+
+```bash
+git tag
+git tag -a v1.0.0 -m "Release v1.0.0"
+git show v1.0.0
+git push origin v1.0.0
+```
+
+A Git tag points at a Git object/commit. A GitHub Release is a GitHub product object commonly built around a tag with release notes/assets.
+
+## Helpful inspection
+
+```bash
+git log --oneline --graph --decorate --all
+git show <commit>
+git blame <file>
+git reflog
+git remote -v
+git branch -vv
+```
+
+---
+
+## GitHub vocabulary
+
+- **Repository** — a Git repository hosted on GitHub.
+- **Branch** — a movable Git reference used for a line of development.
+- **Commit** — a recorded project snapshot with metadata and parent history.
+- **Remote** — a saved name for another repository URL.
+- **Fork** — a GitHub repository created under another namespace from an existing GitHub repository.
+- **Pull Request** — a GitHub review/discussion workflow proposing branch changes for integration.
+- **Issue** — a repository discussion/tracking object; projects use them for bugs, tasks, proposals, and more.
+- **Merge** — integrate histories/changes from another branch into the current branch.
+- **Tag** — a Git reference commonly used to mark versions.
+- **Release** — GitHub release metadata/notes/assets commonly associated with a tag.
+
+## The small set worth developing muscle memory for
+
+```bash
+git status
+git diff
+git add <path>
+git diff --staged
+git commit -m "message"
+git log --oneline --graph --decorate --all
+git fetch
+git pull
+git push
+```
+
+You do **not** need every Git command memorized. You need to inspect state, understand the operation you are about to perform, and know where to look when you forget syntax.
