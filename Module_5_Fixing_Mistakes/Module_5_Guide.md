@@ -191,4 +191,5 @@ From memory, recover a deliberately displaced **committed** change using reflog 
 - [ ] You can amend/reset your own unpublished history deliberately
 - [ ] You can use revert to preserve shared history
 - [ ] You can recover a displaced commit with reflog + a recovery branch
-- [ ] **All Transition Conditions passed → start Module 6**
+
+Then complete **Gate 5 — Recovery** in [`../ASSESSMENTS.md`](../ASSESSMENTS.md). Pass it before starting Module 6.
