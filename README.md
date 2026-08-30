@@ -1,69 +1,100 @@
-# Git & GitHub: Zero to Confident
+# Git & GitHub: Zero to Independent
 
-> A hands-on, do-it-yourself course that takes you from "what even is Git?" to confidently branching, collaborating, fixing mistakes, and contributing to open source.
+> A hands-on mini-academy for learning Git by using it, breaking it, inspecting it, recovering it, and collaborating with it.
 
-> 🟢 **New here? Read [`START_HERE.md`](./START_HERE.md) first** — it explains exactly how to use this repo.
+**Start here:** [`START_HERE.md`](START_HERE.md)
 
----
+This course is designed for beginners who want more than a list of commands. The target is a learner who can look at an unfamiliar repository state, understand what Git is telling them, make a deliberate change, and recover when something goes wrong.
 
-## Who This Is For
+## Learning loop
 
-Beginners who can use a computer but freeze up at the command line. If you've ever been scared of "breaking something" in Git, this course is built for you. By the end, Git is a tool you *use*, not a thing you *fear*.
+> **LEARN → PREDICT → DO → INSPECT → BREAK/RECOVER → EXPLAIN → PROVE**
 
-## How It Works
+Every module ends in evidence, not just reading.
 
-This is the same proven format as a daily-roadmap course, but **lesson-based** instead of timed:
+## Course map
 
-- The course is split into **7 modules** (Setup → Real-World) plus a **Capstone**.
-- Each module has a **Guide** with numbered **lessons**.
-- Every lesson follows the same shape: **LEARN → DO (hands-on) → TRANSITION CONDITION**.
-- You do **not** advance until you can pass the Transition Condition **without looking it up**.
-- There are pre-made **log files** to track each lesson, and an **Exercises** folder to practice in.
-
-> Do these alongside your main work — about one lesson per sitting. No rush. Muscle memory beats speed.
-
----
-
-## The Course Map
-
-| Module | You'll master |
+| Module | Capability |
 |---|---|
-| **0 — Setup** | Git vs GitHub, install, `config`, authentication, your first repo |
-| **1 — Daily Core Loop** | `status`, `add`, `commit`, `log`, `.gitignore`, great commit messages |
-| **2 — Branching & Merging** | branches, switching, merging, fast-forward vs merge commits |
-| **3 — Remotes** | `clone`, `push`, `pull`, `fetch`, upstream tracking |
-| **4 — Collaboration** | forks, Pull Requests, code review, Issues, PR etiquette |
-| **5 — Fixing Mistakes** | `restore`, `stash`, `amend`, `revert`, `reset`, `reflog` (your safety net) |
-| **6 — Real-World** | merge conflicts, rebase basics, tags & releases, profile README, GitHub Actions intro |
-| **Capstone** | Your first real open-source contribution + a polished GitHub profile |
+| **0 — Setup** | distinguish Git/GitHub, configure Git, create repositories safely |
+| **1 — Daily Core** | status, diff, staging, commits, history, ignore rules |
+| **2 — Branching** | isolate work, inspect branches, merge deliberately |
+| **3 — Remotes** | clone, push, fetch, pull, tracking, remote/local relationships |
+| **4 — Collaboration** | forks, PRs, reviews, Issues, contribution etiquette |
+| **5 — Recovery** | restore, stash, amend, revert, reset, reflog, recovery branches |
+| **6 — Real World** | conflicts, divergence, rebase boundaries, tags/releases, CI awareness |
+| **Capstone** | complete a real contribution workflow and demonstrate recovery skills |
 
-**28 lessons total.**
+The original course contains 28 lessons. v2 keeps the accessible lesson-based structure while strengthening technical accuracy, safety, cumulative assessment, and professional workflow.
 
----
+## Important: use a separate practice repository
 
-## Progress Dashboard
+Treat this repo as the textbook. Practice in your own disposable **`git-github-lab`** repository.
 
-- [ ] Module 0 — Setup
-- [ ] Module 1 — Daily Core Loop
-- [ ] Module 2 — Branching & Merging
-- [ ] Module 3 — Remotes
-- [ ] Module 4 — Collaboration
-- [ ] Module 5 — Fixing Mistakes
-- [ ] Module 6 — Real-World
-- [ ] Capstone — First Contribution + Profile
+That separation lets you create conflicts, reset history, recover commits, and make a mess without modifying the curriculum.
 
-Check a box only when you've passed every Transition Condition in that module.
+Setup: **[`STUDENT_LAB.md`](STUDENT_LAB.md)**
 
----
+Safety rules: **[`SAFETY.md`](SAFETY.md)**
 
-## The One Hard Rule
+Cumulative gates: **[`ASSESSMENTS.md`](ASSESSMENTS.md)**
 
-Every lesson has a **Transition Condition** — a small task you must do from memory, no guide open (e.g. *"Resolve a merge conflict on purpose"*). If you can't, repeat the lesson. **Understanding beats finishing.**
+## Mastery gates
 
----
+The course is not timed. Move forward when you can demonstrate the capability from memory and explain the state changes you caused.
 
-## Quick Links
+Major cumulative gates cover:
 
-- 📖 [START_HERE.md](./START_HERE.md) — how to use this repo (super simple)
-- 🧾 [CHEATSHEET.md](./CHEATSHEET.md) — every command in one place
-- 🧱 [Module 0 — Setup](./Module_0_Setup/Module_0_Guide.md) — begin here
+- local Git fundamentals
+- branching
+- remote/GitHub round trips
+- collaboration
+- recovery
+- a final Git disaster/recovery lab
+
+See **[`ASSESSMENTS.md`](ASSESSMENTS.md)**.
+
+## What you should be able to do when finished
+
+You should be able to:
+
+- explain Git's working tree, staging area, commits, branches, and remotes
+- inspect before acting instead of guessing
+- create focused commits and useful history
+- branch/merge and resolve conflicts
+- clone/fetch/pull/push deliberately
+- open and review pull requests
+- distinguish safe history-preserving recovery from history rewriting
+- use reflog to recover displaced committed work
+- understand the shared-history boundary for rebase/reset/force operations
+- tag a version and understand GitHub Releases
+- read a basic GitHub Actions workflow
+- make a small, respectful open-source contribution
+
+## Core commands are not the course
+
+You will use these constantly:
+
+```bash
+git status
+git diff
+git add
+git commit
+git log
+git switch
+git fetch
+git pull
+git push
+```
+
+But competence comes from knowing **what state they change and why**, not from memorizing syntax.
+
+## Reference
+
+- [`CHEATSHEET.md`](CHEATSHEET.md) — quick command reference
+- [Pro Git](https://git-scm.com/book/en/v2) — free official Git book
+- [GitHub Docs](https://docs.github.com/en/get-started) — GitHub workflows and product documentation
+
+## Begin
+
+Open **[`START_HERE.md`](START_HERE.md)** and create your student lab before Lesson 1.
