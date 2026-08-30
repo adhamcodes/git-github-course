@@ -205,4 +205,5 @@ You can explain what CI/Actions does, locate a workflow, identify its trigger/jo
 - [ ] You can rebase your own branch and explain the shared-history boundary
 - [ ] You can tag and release a version deliberately
 - [ ] You can read a basic GitHub Actions workflow
-- [ ] **All Transition Conditions passed → start the Capstone**
+
+Then complete **Gate 6 — Real-World Git / Disaster Lab** in [`../ASSESSMENTS.md`](../ASSESSMENTS.md). Pass it before beginning the capstone.
