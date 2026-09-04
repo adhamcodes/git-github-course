@@ -24,7 +24,7 @@ Create an annotated version tag in your lab, inspect it, push it, and create a G
 
 ## Challenge 4 — Controlled CI lab
 
-Complete the self-contained exercise in [`../../../examples/actions/README.md`](../../../examples/actions/README.md). You must be able to explain the workflow trigger, job, steps, and why the intentionally failing test blocks the check.
+Complete the self-contained exercise in [`../../examples/actions/README.md`](../../examples/actions/README.md). You must be able to explain the workflow trigger, job, steps, and why the intentionally failing test blocks the check.
 
 ## Boss check — Disaster lab
 
