@@ -100,6 +100,8 @@ Rebase creates new commit identities for the replayed commits. Therefore the imp
 
 Rebasing your own feature/PR branch is common in many teams. Rebasing a shared stable branch is a very different risk.
 
+If a team workflow explicitly allows you to rewrite your own published feature branch, `git push --force-with-lease` is safer than raw `--force` because it refuses to overwrite unexpected remote work. It is still a history rewrite and should not be used casually.
+
 ### DO
 Create divergence:
 
@@ -178,23 +180,30 @@ A workflow normally lives under:
 .github/workflows/*.yml
 ```
 
-At this stage you do not need to become a CI engineer. You need to be able to open a workflow and identify:
+This course uses its own workflow at [`../.github/workflows/quality.yml`](../.github/workflows/quality.yml). It validates the repository on both Linux and Windows and also proves that the controlled CI demo still runs.
 
-- what triggers it (`on`)
+At this stage you do not need to become a CI engineer. You do need to identify:
+
+- what triggers a workflow (`on`)
 - its jobs (`jobs`)
+- the runner used by each job
 - the steps each job performs (`steps`)
-- whether a failed check should stop a merge
+- the command that determines whether a check passes
+- why a failed required check should block a merge
 
 A professional GitHub profile is useful too, but profile cosmetics are not evidence of engineering ability. Strong repositories, clear READMEs, useful commits, and real contributions matter more.
 
-### DO
-1. Open a workflow from one of your own or a reputable public repository.
-2. Identify the trigger, jobs, and major steps.
-3. Find a commit or pull request with automated checks and inspect what passed/failed.
-4. If you want a profile README, create a public repo named exactly your username and add a truthful README. Do not claim technologies you have not actually used.
+### DO — controlled lab first
+
+1. Open this course's [quality workflow](../.github/workflows/quality.yml) and identify its trigger, job, matrix, and validation commands.
+2. Complete the self-contained [`examples/actions`](../examples/actions/README.md) lab in your disposable `git-github-lab` repository.
+3. Make the demo workflow pass.
+4. Break the demo test deliberately, push it, and inspect the red check.
+5. Repair it and verify the check returns to green.
+6. Inspect one additional workflow from a reputable project only after you understand the controlled example.
 
 ### TRANSITION CONDITION
-You can explain what CI/Actions does, locate a workflow, identify its trigger/jobs/steps, and explain why a green check is useful but does not prove software correctness by itself.
+You can explain what CI/Actions does, read a basic workflow, produce both a passing and intentionally failing check in your own lab, and explain why green CI proves only the checks that actually ran.
 
 ---
 
@@ -203,7 +212,8 @@ You can explain what CI/Actions does, locate a workflow, identify its trigger/jo
 - [ ] You can deliberately create and resolve a real merge conflict
 - [ ] You understand divergence rather than treating conflicts as random errors
 - [ ] You can rebase your own branch and explain the shared-history boundary
+- [ ] You can explain when `--force-with-lease` is safer than `--force` and why both still rewrite history
 - [ ] You can tag and release a version deliberately
-- [ ] You can read a basic GitHub Actions workflow
+- [ ] You can read and deliberately break/repair a basic GitHub Actions workflow
 
 Then complete **Gate 6 — Real-World Git / Disaster Lab** in [`../ASSESSMENTS.md`](../ASSESSMENTS.md). Pass it before beginning the capstone.
