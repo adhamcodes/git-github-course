@@ -37,6 +37,13 @@ MODULES = [
 
 MARKDOWN_LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
 PLACEHOLDER = re.compile(r"\b(?:TODO|TBD|FIXME)\b", re.IGNORECASE)
+SECRET_PATTERNS = [
+    ("private key", re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")),
+    ("GitHub token", re.compile(r"\bgh[pousr]_[A-Za-z0-9]{20,}\b")),
+    ("AWS access key", re.compile(r"\bAKIA[0-9A-Z]{16}\b")),
+    ("API-secret-like token", re.compile(r"\bsk-[A-Za-z0-9_-]{20,}\b")),
+]
+TEXT_SUFFIXES = {".md", ".py", ".json", ".yml", ".yaml", ".txt", ".html", ".css", ".js"}
 
 
 def fail(errors: list[str], message: str) -> None:
@@ -80,7 +87,6 @@ def validate_markdown_links(errors: list[str]) -> None:
             if not raw_target or raw_target.startswith(("http://", "https://", "mailto:", "#")):
                 continue
 
-            # Markdown links may include an optional quoted title after the destination.
             target = raw_target.split(maxsplit=1)[0].strip("<>")
             target = unquote(target).split("#", 1)[0]
             if not target:
@@ -108,12 +114,20 @@ def validate_file_hygiene(errors: list[str]) -> None:
 
         if path.stat().st_size == 0:
             fail(errors, f"Unexpected empty file: {relative}")
+            continue
 
+        if path.suffix.lower() not in TEXT_SUFFIXES:
+            continue
+
+        text = path.read_text(encoding="utf-8")
         if path.suffix.lower() == ".md":
-            text = path.read_text(encoding="utf-8")
             match = PLACEHOLDER.search(text)
             if match:
                 fail(errors, f"Placeholder marker {match.group(0)!r} in {relative}")
+
+        for label, pattern in SECRET_PATTERNS:
+            if pattern.search(text):
+                fail(errors, f"Possible {label} committed in {relative}")
 
 
 def main() -> int:
@@ -129,7 +143,7 @@ def main() -> int:
         return 1
 
     print("QUALITY GATES: PASS")
-    print("Verified required structure, 28 lesson logs, exercise sheets, local links, and file hygiene.")
+    print("Verified structure, 28 lesson logs, exercises, local links, placeholders, empty files, and secret-pattern hygiene.")
     return 0
 
 
