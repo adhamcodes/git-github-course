@@ -26,15 +26,20 @@ All practice, deliberate mistakes, lesson logs, branches, conflicts, resets, and
 
 See **[STUDENT_LAB.md](STUDENT_LAB.md)** for the exact setup.
 
-## 3. How every lesson works
+## 3. How the course works
 
-Each lesson uses this loop:
+Use this loop:
 
-> **LEARN → PREDICT → DO → INSPECT → BREAK/RECOVER → EXPLAIN → TRANSITION CHECK**
+> **LEARN → PREDICT → DO → INSPECT → BREAK/RECOVER → EXPLAIN → PROVE**
 
-A lesson is finished only when you can pass its Transition Condition without copying commands from the guide.
+For each module:
 
-When a lesson contains a destructive command, first read **[SAFETY.md](SAFETY.md)**.
+1. work through the module guide in your student lab,
+2. complete the module's `Exercises/README.md` challenges,
+3. complete the matching cumulative gate in [ASSESSMENTS.md](ASSESSMENTS.md),
+4. advance only when you can do the required work without copying a recipe.
+
+When a task contains a destructive or history-rewriting command, first read **[SAFETY.md](SAFETY.md)**.
 
 ## 4. Course order
 
@@ -44,7 +49,7 @@ When a lesson contains a destructive command, first read **[SAFETY.md](SAFETY.md
 4. **Module 3 — Remotes**: clone, push, fetch, pull, upstream tracking, divergence
 5. **Module 4 — Collaboration**: forks, pull requests, review, issues, contribution etiquette
 6. **Module 5 — Recovery**: restore, stash, amend, revert, reset, reflog
-7. **Module 6 — Real World**: conflicts, rebase, tags/releases, Actions awareness
+7. **Module 6 — Real World**: conflicts, rebase, tags/releases, controlled GitHub Actions lab
 8. **Final Capstone**: complete a real contribution workflow and demonstrate recovery skills
 
 ## 5. What to do with the lesson logs
@@ -77,7 +82,8 @@ You are ready to move on when you can:
 - run it,
 - inspect whether your prediction was correct,
 - explain the result,
-- recover if you deliberately create a failure.
+- recover if you deliberately create a failure,
+- pass the module challenge and cumulative gate without command-by-command copying.
 
 Finishing pages is not mastery.
 
@@ -89,4 +95,4 @@ Finishing pages is not mastery.
 
 If you get lost later, return to this sentence:
 
-> **Read the lesson. Work in the lab. Inspect constantly. Pass the transition check from memory.**
+> **Read the lesson. Work in the lab. Inspect constantly. Complete the challenge. Prove the gate.**
