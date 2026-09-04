@@ -39,3 +39,6 @@ jobs:
       - name: Verify controlled CI demo
         working-directory: examples/actions/demo
         run: python -m unittest discover -s tests -v
+
+      - name: Verify Git conflict and reflog behavior
+        run: python scripts/smoke_git_behaviors.py
