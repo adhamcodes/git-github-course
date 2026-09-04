@@ -28,7 +28,7 @@ Open the Actions tab or the commit checks. Confirm the tests pass.
 
 ## 4. Break it deliberately
 
-Change `add(2, 3)` in the test expectation so the test is wrong, commit, and push.
+In `tests/test_app.py`, change the expected result for `add(2, 3)` from `5` to `6`, commit, and push.
 
 Predict the result before checking GitHub.
 
@@ -36,7 +36,7 @@ Confirm the workflow fails and inspect the failing test output.
 
 ## 5. Repair
 
-Fix the test, commit, push, and verify the workflow returns to green.
+Restore the correct expectation, commit, push, and verify the workflow returns to green.
 
 ## Pass condition
 
