@@ -1,0 +1,44 @@
+name: Course quality gates
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: course-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.12", "3.14"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Validate course structure and links
+        run: python scripts/validate_repo.py
+
+      - name: Compile validator
+        run: python -m py_compile scripts/validate_repo.py
+
+      - name: Verify controlled CI demo
+        working-directory: examples/actions/demo
+        run: python -m unittest discover -s tests -v
+
+      - name: Verify Git conflict and reflog behavior
+        run: python scripts/smoke_git_behaviors.py

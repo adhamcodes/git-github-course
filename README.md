@@ -22,10 +22,10 @@ Every module ends in evidence, not just reading.
 | **3 — Remotes** | clone, push, fetch, pull, tracking, remote/local relationships |
 | **4 — Collaboration** | forks, PRs, reviews, Issues, contribution etiquette |
 | **5 — Recovery** | restore, stash, amend, revert, reset, reflog, recovery branches |
-| **6 — Real World** | conflicts, divergence, rebase boundaries, tags/releases, CI awareness |
+| **6 — Real World** | conflicts, divergence, rebase boundaries, tags/releases, controlled CI |
 | **Capstone** | complete a real contribution workflow and demonstrate recovery skills |
 
-The original course contains 28 lessons. v2 keeps the accessible lesson-based structure while strengthening technical accuracy, safety, cumulative assessment, and professional workflow.
+The course contains 28 lessons, module challenge sheets, six cumulative gates plus capstone assessment, and a self-contained GitHub Actions lab.
 
 ## Important: use a separate practice repository
 
@@ -68,8 +68,20 @@ You should be able to:
 - use reflog to recover displaced committed work
 - understand the shared-history boundary for rebase/reset/force operations
 - tag a version and understand GitHub Releases
-- read a basic GitHub Actions workflow
+- read, run, deliberately fail, and repair a basic GitHub Actions workflow
 - make a small, respectful open-source contribution
+
+## The repository practices what it teaches
+
+This course has its own cross-platform GitHub Actions quality gate. On every push and pull request it checks the required course structure, all 28 lesson logs, module exercise sheets, local Markdown links, file hygiene, and the runnable CI demo.
+
+Run the same core validation locally:
+
+```bash
+python scripts/validate_repo.py
+```
+
+The controlled Actions lab lives at [`examples/actions/README.md`](examples/actions/README.md).
 
 ## Core commands are not the course
 
@@ -94,6 +106,12 @@ But competence comes from knowing **what state they change and why**, not from m
 - [`CHEATSHEET.md`](CHEATSHEET.md) — quick command reference
 - [Pro Git](https://git-scm.com/book/en/v2) — free official Git book
 - [GitHub Docs](https://docs.github.com/en/get-started) — GitHub workflows and product documentation
+
+## Contributing and license
+
+Contributions should preserve the inspection-first, evidence-based learning model. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+Licensed under the [`MIT License`](LICENSE).
 
 ## Begin
 
