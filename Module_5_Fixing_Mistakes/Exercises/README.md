@@ -1,6 +1,6 @@
 # Module 5 Exercises — Fixing Mistakes and Recovery
 
-Use only your disposable student lab. Read `../SAFETY.md` before destructive commands.
+Use only your disposable student lab. Read [`../../SAFETY.md`](../../SAFETY.md) before destructive commands.
 
 ## Challenge 1 — Choose the least destructive tool
 
