@@ -10,17 +10,19 @@ Create an Issue describing a small, testable change. Create a branch from curren
 
 ## Challenge 2 — Review without rubber-stamping
 
-Review a harmless practice PR. Leave at least:
+Inspect a harmless practice PR as if you were its reviewer. Record at least:
 
-- one question about intent or behavior
-- one concrete improvement request
-- one approval only after the requested change is resolved
+- one question about intent or behavior,
+- one concrete improvement request,
+- the final decision you would make after the concern is resolved and why.
 
-Explain the difference between reviewing code and merely confirming that a diff exists.
+If a real collaborator is available, perform the review on their PR. If you are studying solo, keep the review notes in your lab; GitHub does not allow you to approve your own PR, and this course does not require another person just to pass the exercise.
+
+Explain the difference between reviewing a change and merely confirming that a diff exists.
 
 ## Challenge 3 — Update the same PR
 
-Respond to review feedback by committing to the existing PR branch. Do not open a replacement PR.
+Respond to your review feedback by committing to the existing PR branch. Do not open a replacement PR.
 
 Explain why the pull request updates automatically.
 
